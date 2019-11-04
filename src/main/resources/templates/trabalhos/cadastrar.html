@@ -199,7 +199,72 @@
 		})
 		
 	});
+	
+	/*[# th:if="${trabalho.id != null}"]*/
+	
+		$("#file").removeAttr("required");
+	
+	/*[/]*/
 		
+	/*[# th:if="${trabalho != null}"]*/
+	
+		$(document).ready(function() {
+			$.each([[${trabalho.autores}]], function( index, value ){
+				if(index == 0){
+					document.getElementById("autores").value = value.nome;
+				}else{
+					
+					idContador++;
+					
+					var idCampo = "campoExtra"+idContador;
+					var idForm = "formExtra"+idContador;
+				
+					var html = "";
+					
+					html += "<div style='margin-top: 8px;' class='input-group' id='"+idForm+"'>";
+					html += "<input type='text' id='"+idCampo+"' class='form-control novoautor' placeholder='Insira um autor'/>";
+					html += "<span class='input-group-btn'>";
+					html +=	"<button class='btn' onclick='exclui("+idForm+")' type='button'><span class='fa fa-trash'></span></button>";
+					html += "</span>";
+					html += "</div>";
+					$("#emendaHTMLautor").append(html);
+					
+					document.getElementById(idCampo).value = value.nome;
+				}
+				
+			});
+		});
+		
+		$(document).ready(function() {
+			$.each([[${trabalho.palavras}]], function( index, value ){
+				if(index == 0){
+					document.getElementById("palavras").value = value.palavra;
+				}else{
+					
+					idContador++;
+					
+					var idCampo = "campoExtra"+idContador;
+					var idForm = "formExtra"+idContador;
+				
+					var html = "";
+					
+					html += "<div style='margin-top: 8px;' class='input-group' id='"+idForm+"'>";
+					html += "<input type='text' id='"+idCampo+"' class='form-control novopalavra' placeholder='Insira uma palavra'/>";
+					html += "<span class='input-group-btn'>";
+					html +=	"<button class='btn' onclick='exclui("+idForm+")' type='button'><span class='fa fa-trash'></span></button>";
+					html += "</span>";
+					html += "</div>";
+					$("#emendaHTMLpalavra").append(html);
+					
+					document.getElementById(idCampo).value = value.palavra;
+				}
+				
+			});
+		});
+		
+	
+	/*[/]*/
+	
 	/*[# th:if="${trabalho.curso != null}"]*/
 	$(document).ready(function() {
 		$.get('/trabalho/curso/listar' , function( result ) {

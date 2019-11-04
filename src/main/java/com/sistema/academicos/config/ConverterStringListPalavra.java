@@ -12,8 +12,7 @@ import com.sistema.academicos.model.Palavra;
 public class ConverterStringListPalavra implements Converter<String, List<Palavra>>{
 
 	public List<Palavra> convert(final String dados) {
-	    System.out.println(dados+"\n\n\n\n\n\n\n");
-		String[] lista = dados.split(",");
+	  	String[] lista = dados.split(",");
 		List<Palavra> retorno = new ArrayList<Palavra>();
 		
 		

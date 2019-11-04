@@ -19,7 +19,7 @@ public class DBFileService {
     private DBFileRepository dbFileRepository;
 
     public DBFile storeFile(MultipartFile file) {
-        // Normalize file name
+        // Normalizar o nome do arquivo
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {

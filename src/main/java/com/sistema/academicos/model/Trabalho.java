@@ -56,7 +56,7 @@ public class Trabalho {
 	
 	private String resumo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "file_id")
 	private DBFile file;
 	

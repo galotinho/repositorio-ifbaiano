@@ -40,9 +40,15 @@ public class TrabalhoController {
 	
 	@PostMapping("/salvar")
 	public String salvar(@RequestParam("arquivo") MultipartFile file, Trabalho trabalho, RedirectAttributes attr) {
-		DBFile dbFile = DBFileStorageService.storeFile(file);
-		trabalho.setFile(dbFile);
 		
+		//verifica se novo arquivo não for anexado
+		if(file.getContentType().equals("application/octet-stream")){
+			trabalho.setFile(service.buscarPorId(trabalho.getId()).getFile());
+		}else {
+			DBFile dbFile = DBFileStorageService.storeFile(file);
+			trabalho.setFile(dbFile);
+		}
+								
 		service.salvar(trabalho);
 		attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");		
 		return "redirect:/trabalho";
